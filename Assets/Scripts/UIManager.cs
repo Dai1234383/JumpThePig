@@ -7,8 +7,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] private TextMeshProUGUI _gameText;
-    [SerializeField] private Button _toResultButton;
+    [SerializeField] private TextMeshProUGUI _gameText;     //カウントダウンなどのテキスト
+    [SerializeField] private Button _toResultButton;        //リザルトに行くボタン
+    [SerializeField] private TextMeshProUGUI _scoreText;    //スコア表示のテキスト
 
     private void Awake()
     {
@@ -27,11 +28,32 @@ public class UIManager : MonoBehaviour
         await UniTask.Delay(1000);
         _gameText.gameObject.SetActive(false);
     }
+    private void Update()
+    {
+        UpdateScore();
+    }
 
+    /// <summary>
+    /// スコアの更新
+    /// </summary>
+    private void UpdateScore()
+    {
+        int score = ScoreManager.Instance.MaxScore;
+        string scoreText=score.ToString();
+        _scoreText.text = ("score:"+scoreText+" m");
+    }
+
+
+    /// <summary>
+    /// ゲームオーバー時にUIを変更
+    /// </summary>
     public void GameOverUI()
     {
+        //セットアクティブを切り替え
         _toResultButton.gameObject.SetActive(true);
         _gameText.gameObject.SetActive(true);
+        //テキストを変更
         _gameText.text = ("GameOver!!");
     }
+
 }
