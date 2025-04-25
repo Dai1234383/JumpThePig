@@ -85,7 +85,7 @@ public class ResultScore : MonoBehaviour
             }
             else
             {
-                _scoreTexts[i].text = $"No.{i + 1} : ---";
+                _scoreTexts[i].text = $"No.{i + 1} : 0m";
             }
         }
     }
@@ -117,7 +117,7 @@ public class ResultScore : MonoBehaviour
         _scoreList.Clear();
         for (int i = 0; i < _scoreTexts.Length; i++)
         {
-            _scoreTexts[i].text = $"No.{i + 1} : ---";
+            _scoreTexts[i].text = $"No.{i + 1} : 0m";
         }
 
         if (_newRecordText != null)
